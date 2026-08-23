@@ -1,0 +1,1191 @@
+DATA STRUCTURES AND ALGORITHMS (DSA) PRACTICE SHEET
+Topics: Pseudocode, Flowcharts, Time Complexity, and Space Complexity
+
+============================================================
+SECTION 1: PSEUDOCODE PROBLEMS
+============================================================
+
+------------------------------------------------------------
+PROBLEM PC-1: PRIME NUMBER CHECKER
+------------------------------------------------------------
+
+Question:
+Write a pseudocode algorithm that takes a positive integer
+N > 1 as input and checks whether it is a Prime number or
+Not Prime. For efficiency, optimize your loop to only test
+factors up to sqrt(N) or N/2.
+
+Example 1:
+Input: N = 61
+Output: Prime
+
+Example 2:
+Input: N = 8
+Output: Not Prime
+
+
+PSEUDOCODE:
+
+ALGORITHM Prime_Number_Checker
+
+BEGIN
+
+    INPUT N
+
+    SET i = 2
+
+    WHILE i * i <= N DO
+
+        IF N MOD i = 0 THEN
+            OUTPUT "Not Prime"
+            STOP
+        END IF
+
+        SET i = i + 1
+
+    END WHILE
+
+    OUTPUT "Prime"
+
+END
+
+
+Explanation:
+A prime number has exactly two factors: 1 and itself.
+Instead of checking every number from 2 to N - 1, the
+algorithm checks only up to sqrt(N). If N has a factor
+greater than sqrt(N), it must also have a corresponding
+factor smaller than sqrt(N). Therefore, checking up to
+sqrt(N) is sufficient.
+
+For N = 61:
+2, 3, 4, 5, 6 and 7 do not divide 61.
+Therefore, 61 is Prime.
+
+For N = 8:
+8 MOD 2 = 0.
+Therefore, 8 is Not Prime.
+
+
+------------------------------------------------------------
+PROBLEM PC-2: NUMBER DIGIT REVERSAL
+------------------------------------------------------------
+
+Question:
+Write a pseudocode algorithm that takes an integer N as
+input and returns the number with its digits reversed.
+Ensure your algorithm handles digits mathematically using
+loops, remainder, and integer division operations.
+
+Example 1:
+Input: N = 1234
+Output: 4321
+
+Example 2:
+Input: N = 806
+Output: 608
+
+
+PSEUDOCODE:
+
+ALGORITHM Reverse_Number
+
+BEGIN
+
+    INPUT N
+
+    SET rev = 0
+
+    WHILE N > 0 DO
+
+        SET digit = N MOD 10
+
+        SET rev = rev * 10 + digit
+
+        SET N = N / 10
+        // Integer division
+
+    END WHILE
+
+    OUTPUT rev
+
+END
+
+
+Explanation:
+N MOD 10 extracts the last digit of N.
+rev * 10 shifts the existing digits of rev to the left.
+The extracted digit is then added to rev.
+N / 10 removes the last digit from N using integer division.
+
+Example for N = 1234:
+
+Step 1:
+digit = 1234 MOD 10 = 4
+rev = 0 * 10 + 4 = 4
+N = 1234 / 10 = 123
+
+Step 2:
+digit = 123 MOD 10 = 3
+rev = 4 * 10 + 3 = 43
+N = 123 / 10 = 12
+
+Step 3:
+digit = 12 MOD 10 = 2
+rev = 43 * 10 + 2 = 432
+N = 12 / 10 = 1
+
+Step 4:
+digit = 1 MOD 10 = 1
+rev = 432 * 10 + 1 = 4321
+N = 1 / 10 = 0
+
+Output = 4321
+
+
+============================================================
+SECTION 2: FLOWCHART PROBLEMS
+============================================================
+
+IMPORTANT:
+The following are the exact flowchart blocks and flow.
+When drawing the final graphical flowchart, use:
+
+OVAL              = START / END
+PARALLELOGRAM     = INPUT / OUTPUT
+RECTANGLE         = PROCESS
+DIAMOND           = DECISION
+ARROWS            = FLOW DIRECTION
+
+
+------------------------------------------------------------
+PROBLEM FC-1: PRIME NUMBER FLOWCHART
+------------------------------------------------------------
+
+Question:
+Design a flowchart representing the algorithm to check if
+a positive integer N > 1 is a Prime number or Not Prime.
+Clearly label the input, decision diamonds (loop bounds and
+divisibility checks), process blocks, and terminal nodes.
+
+
+FLOWCHART:
+
+                         +----------------+
+                         |     START      |
+                         |     (OVAL)     |
+                         +-------+--------+
+                                 |
+                                 v
+                    /-------------------------\
+                   /       INPUT N             \
+                  /    (PARALLELOGRAM)          \
+                  \                             /
+                   \---------------------------/
+                                 |
+                                 v
+                         +---------------+
+                         |    i = 2      |
+                         |  (PROCESS)    |
+                         +-------+-------+
+                                 |
+                                 v
+                         /---------------\
+                        <  i * i <= N ?   >
+                         \---------------/
+                           /           \
+                         YES            NO
+                          |              |
+                          v              v
+                 /----------------\   /------------------\
+                <   N MOD i = 0 ?  > < OUTPUT "Prime"    >
+                 \----------------/   \------------------/
+                   /          \               |
+                 YES           NO             v
+                  |             |        +---------+
+                  v             v        |   END   |
+       /------------------\   +----------------+  | (OVAL) |
+      / OUTPUT "Not Prime" \  |   i = i + 1    |  +---------+
+      \  (PARALLELOGRAM)  /   |   (PROCESS)    |
+       \------------------/   +-------+--------+
+                  |                    |
+                  v                    |
+             +---------+               |
+             |   END   |               |
+             |  (OVAL) |               |
+             +---------+               |
+                                       |
+                                       +----------+
+                                                  |
+                                                  v
+                                           Back to decision:
+                                           i * i <= N ?
+
+
+Flowchart logic:
+1. Start.
+2. Input N.
+3. Set i = 2.
+4. Check whether i * i <= N.
+5. If NO, output "Prime" and end.
+6. If YES, check whether N MOD i = 0.
+7. If YES, output "Not Prime" and end.
+8. If NO, increase i by 1.
+9. Go back to the loop-bound decision.
+10. Continue until a factor is found or i * i becomes
+    greater than N.
+
+
+Graphical shape requirements:
+- START and END must be terminal OVALS.
+- INPUT N must be a PARALLELOGRAM.
+- i = 2 must be a RECTANGLE.
+- i * i <= N? must be a DIAMOND.
+- N MOD i = 0? must be a DIAMOND.
+- i = i + 1 must be a RECTANGLE.
+- OUTPUT "Prime" and OUTPUT "Not Prime" must be
+  PARALLELOGRAMS.
+
+
+------------------------------------------------------------
+PROBLEM FC-2: NUMBER DIGIT REVERSAL FLOWCHART
+------------------------------------------------------------
+
+Question:
+Design a flowchart representing the algorithm to reverse
+the digits of a given integer N. Clearly outline the loop
+condition (e.g., N > 0), the mathematical steps (extracting
+the last digit, appending it to the reversed number, and
+updating N), and the final output block.
+
+
+FLOWCHART:
+
+                         +----------------+
+                         |     START      |
+                         |     (OVAL)     |
+                         +-------+--------+
+                                 |
+                                 v
+                    /-------------------------\
+                   /       INPUT N             \
+                  /    (PARALLELOGRAM)          \
+                  \                             /
+                   \---------------------------/
+                                 |
+                                 v
+                         +---------------+
+                         |    rev = 0    |
+                         |   (PROCESS)   |
+                         +-------+-------+
+                                 |
+                                 v
+                         /---------------\
+                        <     N > 0 ?     >
+                         \---------------/
+                           /           \
+                         YES            NO
+                          |              |
+                          v              v
+                  +----------------+   /------------------\
+                  | digit = N % 10 |  <   OUTPUT rev      >
+                  |    (PROCESS)   |   \------------------/
+                  +-------+--------+           |
+                          |                    v
+                          v              +-----------+
+                  +----------------+     |    END    |
+                  | rev = rev*10   |     |   (OVAL)  |
+                  |      + digit   |     +-----------+
+                  |   (PROCESS)    |
+                  +-------+--------+
+                          |
+                          v
+                  +----------------+
+                  |    N = N / 10  |
+                  |    (PROCESS)   |
+                  +-------+--------+
+                          |
+                          |
+                          +--------------------------+
+                                                     |
+                                                     v
+                                             Back to decision:
+                                                  N > 0 ?
+
+
+Flowchart logic:
+1. Start.
+2. Input N.
+3. Set rev = 0.
+4. Check whether N > 0.
+5. If NO, output rev and end.
+6. If YES, extract the last digit using N MOD 10.
+7. Add the digit to the reversed number using
+   rev = rev * 10 + digit.
+8. Remove the last digit from N using N = N / 10.
+9. Go back to N > 0.
+10. Continue until N becomes 0.
+11. Output rev.
+12. End.
+
+
+Graphical shape requirements:
+- START and END must be terminal OVALS.
+- INPUT N and OUTPUT rev must be PARALLELOGRAMS.
+- rev = 0, digit = N % 10, rev = rev*10 + digit,
+  and N = N / 10 must be RECTANGLES.
+- N > 0? must be a DIAMOND.
+
+
+============================================================
+SECTION 3: TIME COMPLEXITY PROBLEMS
+============================================================
+
+------------------------------------------------------------
+PROBLEM TC-1: LINEAR SEARCH TIME COMPLEXITY
+------------------------------------------------------------
+
+Question:
+Analyze the time complexity of the Linear Search algorithm.
+
+Sample Input Array:
+{8, 61, 2, 3, 4, 0}
+
+Tasks:
+1. Define and explain the Best Case time complexity in Big-O
+   notation using the target value 8.
+2. Define and explain the Worst Case time complexity in Big-O
+   notation using the target value 0 or a value not present
+   in the array, like 5.
+3. Explain what the Average Case time complexity is in Big-O
+   notation for a target located at a random position.
+
+
+JAVA SOLUTION:
+
+public class LinearSearch {
+
+    public static int search(int[] arr, int target) {
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {8, 61, 2, 3, 4, 0};
+
+        System.out.println(search(arr, 8));
+        System.out.println(search(arr, 0));
+    }
+}
+
+
+/*
+TIME COMPLEXITY ANALYSIS
+
+Sample array:
+{8, 61, 2, 3, 4, 0}
+
+
+1. BEST CASE:
+
+Target = 8
+
+8 is the first element of the array.
+
+Index:
+0
+
+Only one comparison is required.
+
+Number of comparisons = 1
+
+Therefore:
+
+Best Case Time Complexity = O(1)
+
+Explanation:
+The algorithm finds the target immediately at the first
+position, so the running time does not depend on the size
+of the array.
+
+
+2. WORST CASE:
+
+Target = 0
+
+0 is the last element of the array.
+
+The algorithm checks:
+
+8
+61
+2
+3
+4
+0
+
+Number of comparisons = 6
+
+For an array of N elements, the algorithm may have to check
+all N elements.
+
+A target that is not present, such as 5, also requires all
+N elements to be checked.
+
+Therefore:
+
+Worst Case Time Complexity = O(N)
+
+
+3. AVERAGE CASE:
+
+If the target is equally likely to occur at any position,
+the target may be found after checking approximately:
+
+(N + 1) / 2 elements
+
+For Big-O notation, constants are ignored.
+
+Therefore:
+
+Average Case Time Complexity = O(N)
+
+
+FINAL ANSWER:
+
+Best Case    = O(1)
+Average Case = O(N)
+Worst Case   = O(N)
+
+
+SPACE COMPLEXITY:
+
+The algorithm uses only a loop variable and does not create
+another array.
+
+Auxiliary Space Complexity = O(1)
+*/
+
+
+------------------------------------------------------------
+PROBLEM TC-2: ITERATIVE BINARY SEARCH COMPLEXITY
+------------------------------------------------------------
+
+Question:
+For an array that is already sorted, analyze the search
+space division at each iteration of Binary Search.
+
+Sample Sorted Array:
+{0, 2, 3, 4, 8, 61}
+
+Tasks:
+1. Show the step-by-step search range narrowing when
+   searching for target value 4.
+2. Derive the mathematical equation for the number of
+   comparison steps in the worst case for an array of
+   size N, and express the final time complexity in
+   Big-O notation.
+
+
+JAVA SOLUTION:
+
+public class BinarySearch {
+
+    public static int search(int[] arr, int target) {
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                return mid;
+            }
+            else if (arr[mid] < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {0, 2, 3, 4, 8, 61};
+
+        System.out.println(search(arr, 4));
+    }
+}
+
+
+/*
+STEP-BY-STEP SEARCH FOR TARGET = 4
+
+Array:
+Index:   0   1   2   3   4   5
+Value:   0   2   3   4   8  61
+
+
+STEP 1:
+
+low = 0
+high = 5
+
+mid = (0 + 5) / 2
+mid = 2
+
+arr[2] = 3
+
+Compare:
+3 < 4
+
+Therefore, target must be in the right half.
+
+New range:
+
+Index:       3   4   5
+Value:       4   8  61
+
+
+STEP 2:
+
+low = 3
+high = 5
+
+mid = (3 + 5) / 2
+mid = 4
+
+arr[4] = 8
+
+Compare:
+8 > 4
+
+Therefore, target must be in the left half.
+
+New range:
+
+Index:       3
+Value:       4
+
+
+STEP 3:
+
+low = 3
+high = 3
+
+mid = (3 + 3) / 2
+mid = 3
+
+arr[3] = 4
+
+Target found.
+
+Total comparisons = 3.
+
+
+WORST CASE MATHEMATICAL DERIVATION:
+
+Let the array contain N elements.
+
+After the first comparison:
+
+N / 2 elements remain.
+
+After the second comparison:
+
+N / 4 elements remain.
+
+After the third comparison:
+
+N / 8 elements remain.
+
+After k comparisons:
+
+N / 2^k elements remain.
+
+
+For the final search:
+
+N / 2^k <= 1
+
+
+Multiply both sides by 2^k:
+
+N <= 2^k
+
+
+Taking log base 2:
+
+log2(N) <= k
+
+
+Therefore:
+
+k = ceil(log2(N)) + 1
+
+Depending on whether the final comparison is counted
+separately, the exact number differs by a constant.
+For Big-O, constants do not matter.
+
+Therefore:
+
+Worst Case Time Complexity = O(log N)
+
+
+SPACE COMPLEXITY:
+
+This is ITERATIVE Binary Search.
+
+Only low, high, and mid variables are used.
+
+Auxiliary Space Complexity = O(1)
+*/
+
+
+------------------------------------------------------------
+PROBLEM TC-3: MERGE SORT TIME COMPLEXITY
+------------------------------------------------------------
+
+Question:
+Sample Input Array:
+{8, 61, 2, 3, 4, 0}
+
+Tasks:
+1. Draw the division/split tree showing how the sample
+   array is divided down to individual elements.
+2. Solve this recurrence relation using the recursion tree
+   method, showing the work done at each level of the tree,
+   and state the final Big-O time complexity.
+
+
+JAVA SOLUTION:
+
+public class MergeSort {
+
+    public static void mergeSort(int[] arr, int low, int high) {
+
+        if (low >= high) {
+            return;
+        }
+
+        int mid = low + (high - low) / 2;
+
+        mergeSort(arr, low, mid);
+
+        mergeSort(arr, mid + 1, high);
+
+        merge(arr, low, mid, high);
+    }
+
+
+    public static void merge(int[] arr, int low, int mid, int high) {
+
+        int[] temp = new int[high - low + 1];
+
+        int i = low;
+        int j = mid + 1;
+        int k = 0;
+
+
+        while (i <= mid && j <= high) {
+
+            if (arr[i] <= arr[j]) {
+                temp[k] = arr[i];
+                i++;
+            }
+            else {
+                temp[k] = arr[j];
+                j++;
+            }
+
+            k++;
+        }
+
+
+        while (i <= mid) {
+            temp[k] = arr[i];
+            i++;
+            k++;
+        }
+
+
+        while (j <= high) {
+            temp[k] = arr[j];
+            j++;
+            k++;
+        }
+
+
+        for (i = low, k = 0; i <= high; i++, k++) {
+            arr[i] = temp[k];
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        int[] arr = {8, 61, 2, 3, 4, 0};
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+    }
+}
+
+
+/*
+DIVISION / SPLIT TREE
+
+Original array:
+
+                    {8, 61, 2, 3, 4, 0}
+                           /        \
+                          /          \
+                         /            \
+                  {8, 61, 2}       {3, 4, 0}
+                    /     \          /     \
+                   /       \        /       \
+               {8, 61}    {2}    {3, 4}    {0}
+                /   \              /   \
+               /     \            /     \
+             {8}    {61}        {3}    {4}
+
+
+At the bottom, every subarray contains one element.
+
+
+RECURSION TREE ANALYSIS
+
+Merge Sort recurrence:
+
+T(N) = 2T(N/2) + O(N)
+
+
+LEVEL 0:
+
+There is 1 subproblem of size N.
+
+Work done for merging = O(N)
+
+Total work at level 0:
+
+O(N)
+
+
+LEVEL 1:
+
+There are 2 subproblems.
+
+Each has size N/2.
+
+Work:
+
+2 × O(N/2)
+= O(N)
+
+
+LEVEL 2:
+
+There are 4 subproblems.
+
+Each has size N/4.
+
+Work:
+
+4 × O(N/4)
+= O(N)
+
+
+LEVEL 3:
+
+There are 8 subproblems.
+
+Each has size N/8.
+
+Work:
+
+8 × O(N/8)
+= O(N)
+
+
+Therefore, at every level:
+
+Work = O(N)
+
+
+Number of levels:
+
+log2(N)
+
+
+Total work:
+
+O(N) + O(N) + O(N) + ... log2(N) times
+
+= O(N log N)
+
+
+Therefore:
+
+BEST CASE TIME COMPLEXITY    = O(N log N)
+AVERAGE CASE TIME COMPLEXITY = O(N log N)
+WORST CASE TIME COMPLEXITY    = O(N log N)
+
+
+FINAL ANSWER:
+
+Merge Sort Time Complexity = O(N log N)
+*/
+
+
+============================================================
+SECTION 4: SPACE COMPLEXITY PROBLEMS
+============================================================
+
+------------------------------------------------------------
+PROBLEM SC-1: LINEAR SEARCH SPACE COMPLEXITY
+------------------------------------------------------------
+
+Question:
+Write the space complexity in Big-O notation for the
+Linear Search algorithm.
+
+Sample Input Array:
+{8, 61, 2, 3, 4, 0}
+
+Task:
+Determine the auxiliary space complexity of iterative
+Linear Search on the sample array. Explain your reasoning.
+
+
+JAVA SOLUTION:
+
+public class LinearSearchSpace {
+
+    public static int search(int[] arr, int target) {
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {8, 61, 2, 3, 4, 0};
+
+        System.out.println(search(arr, 4));
+    }
+}
+
+
+/*
+SPACE COMPLEXITY:
+
+The input array is already provided to the algorithm.
+We do not count the input array as auxiliary space.
+
+The algorithm only uses a constant number of variables,
+such as:
+
+i
+target
+
+No new array, list, or data structure is created.
+
+The number of extra variables remains the same even when
+the input size N increases.
+
+Therefore:
+
+Auxiliary Space Complexity = O(1)
+
+
+ANSWER:
+
+O(1)
+*/
+
+
+------------------------------------------------------------
+PROBLEM SC-2: BINARY SEARCH SPACE COMPLEXITY
+------------------------------------------------------------
+
+Question:
+Write the space complexity in Big-O notation for the
+Binary Search algorithm.
+
+Sample Sorted Array:
+{0, 2, 3, 4, 8, 61}
+
+Task:
+Write the auxiliary space complexity in Big-O notation
+for Iterative Binary Search.
+
+
+JAVA SOLUTION:
+
+public class BinarySearchSpace {
+
+    public static int search(int[] arr, int target) {
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                return mid;
+            }
+            else if (arr[mid] < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = {0, 2, 3, 4, 8, 61};
+
+        System.out.println(search(arr, 4));
+    }
+}
+
+
+/*
+SPACE COMPLEXITY:
+
+This is ITERATIVE Binary Search.
+
+The algorithm uses only a fixed number of variables:
+
+low
+high
+mid
+
+No additional array or data structure is created.
+
+There is also no recursion, so there is no recursive
+call stack.
+
+The extra memory does not increase as N increases.
+
+Therefore:
+
+Auxiliary Space Complexity = O(1)
+
+
+ANSWER:
+
+O(1)
+*/
+
+
+------------------------------------------------------------
+PROBLEM SC-3: MERGE SORT SPACE COMPLEXITY
+------------------------------------------------------------
+
+Question:
+Analyze the auxiliary space complexity of the Merge Sort
+algorithm.
+
+
+JAVA SOLUTION:
+
+public class MergeSortSpace {
+
+    public static void mergeSort(int[] arr, int low, int high) {
+
+        if (low >= high) {
+            return;
+        }
+
+        int mid = low + (high - low) / 2;
+
+        mergeSort(arr, low, mid);
+
+        mergeSort(arr, mid + 1, high);
+
+        merge(arr, low, mid, high);
+    }
+
+
+    public static void merge(int[] arr, int low, int mid, int high) {
+
+        int[] temp = new int[high - low + 1];
+
+        int i = low;
+        int j = mid + 1;
+        int k = 0;
+
+
+        while (i <= mid && j <= high) {
+
+            if (arr[i] <= arr[j]) {
+                temp[k] = arr[i];
+                i++;
+            }
+            else {
+                temp[k] = arr[j];
+                j++;
+            }
+
+            k++;
+        }
+
+
+        while (i <= mid) {
+            temp[k] = arr[i];
+            i++;
+            k++;
+        }
+
+
+        while (j <= high) {
+            temp[k] = arr[j];
+            j++;
+            k++;
+        }
+
+
+        for (i = low, k = 0; i <= high; i++, k++) {
+            arr[i] = temp[k];
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        int[] arr = {8, 61, 2, 3, 4, 0};
+
+        mergeSort(arr, 0, arr.length - 1);
+    }
+}
+
+
+/*
+SPACE COMPLEXITY ANALYSIS:
+
+Merge Sort requires a temporary array during the merge
+operation.
+
+For an array of N elements, the temporary array can contain
+N elements.
+
+Therefore, the temporary array requires:
+
+O(N) space
+
+
+Merge Sort is also recursive.
+
+The maximum recursion depth is:
+
+O(log N)
+
+
+However, the temporary array requires O(N) space, which is
+larger than O(log N).
+
+Therefore:
+
+Auxiliary Space Complexity = O(N)
+
+
+ANSWER:
+
+O(N)
+
+
+Reason:
+Temporary merge array = O(N)
+Recursive call stack = O(log N)
+
+Overall auxiliary space:
+
+O(N) + O(log N)
+= O(N)
+*/
+
+
+============================================================
+FINAL COMPLEXITY SUMMARY
+============================================================
+
+------------------------------------------------------------
+LINEAR SEARCH
+------------------------------------------------------------
+
+Best Time Complexity:
+O(1)
+
+Average Time Complexity:
+O(N)
+
+Worst Time Complexity:
+O(N)
+
+Auxiliary Space Complexity:
+O(1)
+
+
+------------------------------------------------------------
+ITERATIVE BINARY SEARCH
+------------------------------------------------------------
+
+Best Time Complexity:
+O(1)
+
+Worst Time Complexity:
+O(log N)
+
+Auxiliary Space Complexity:
+O(1)
+
+
+------------------------------------------------------------
+MERGE SORT
+------------------------------------------------------------
+
+Best Time Complexity:
+O(N log N)
+
+Average Time Complexity:
+O(N log N)
+
+Worst Time Complexity:
+O(N log N)
+
+Auxiliary Space Complexity:
+O(N)
+
+
+============================================================
+END OF ASSIGNMENT
+============================================================
