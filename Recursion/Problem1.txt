@@ -1,0 +1,18 @@
+(b) Execution trace
+- src = 100 + 50 = 150 KB
+- guides = 200 KB
+- docs = 10 + 200 = 210 KB
+- project = 150 + 210 + 20 = 380 KB
+(c) Time complexity
+
+Let \(N\) be the total number of files and directories. Each item is processed once, so the time complexity is \(O(N)\). The recursive auxiliary space complexity is \(O(H)\), where \(H\) is the maximum directory depth.
+
+(d) Iterative approach
+
+The iterative method uses a stack to process items without recursive function calls. Both approaches have \(O(N)\) time complexity. The iterative method avoids call-stack overflow from deeply nested directories.
+
+(e) Handling symbolic links
+
+A symbolic link can create a cycle, causing infinite recursion. A visited set prevents revisiting directories. If adirectory is already visited, the function returns 0. In a real file system, use canonical paths or unique directory IDs rather than names alone to identify directories correctly.
+
+Important: The program uses a simplified directory model. Its visited set assumes directory names are unique; a real file-system implementation should use unique directory identifiers or canonical paths.
